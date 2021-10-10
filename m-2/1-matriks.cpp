@@ -1,40 +1,51 @@
 #include <stdlib.h>
 #include <iostream>
+#include <string.h>
 #include <cstdio>
 
 typedef unsigned char **citra;
-typedef float **rmatrik;
-typedef int **imatriks;
 citra f;
 
-void *xalloc(unsigned ukuran)
-/* Mengalokasikan memori dan memeriksa apakah alokasi memori berhasil */
-{
-    void *p = malloc(ukuran);
-    if (p == NULL)
-    {
-
-        exit(0);
-    }
-    return p;
-}
-
-void **alokasi(int N, int M, int UkuranElemen)
-/* Mengalokasikan memori untuk matriks yang berukuran N x M. Setiap elemen
-matriks membutuhkan ruang memori sebesar UkuranElemen byte */
+void dealokasi(citra f, int N)
+/* Dealokasi memori dari citra f yang mempunyai N baris pixel */
 {
     int i;
-    std::cout << "Mengalokasikan memori untuk matriks";
+    for (i = 0; i < N; i++)
+    {
+        free(f[i]); /* bebaskan memori semua elemen pada baris i */
+    }
+    free(f);
+}
+
+citra alokasi(int N, int M)
+/* Mengalokasikan memori untuk citra f yang berukuran N x M pixel. */
+{
+    int i;
+    std::cout << "Mengalokasikan Memory untuk Citra f";
     printf("\nKlik Enter");
     std::getchar();
-    void **larik = (void **)xalloc(N * sizeof(void *)); /* buat array N elemen */
 
+    f = (unsigned char **)malloc(N * sizeof(unsigned char *));
+    if (f == NULL)
+        return (NULL); /* memori habis */
     for (i = 0; i < N; i++)
-        larik[i] = (void *)xalloc(M * UkuranElemen);
-    return larik;
+    {
+        f[i] = (unsigned char *)malloc(M * sizeof(unsigned char));
+        if (f[i]++)
+            NULL;
+        {
+            std::cout << "Memori habis, dealokasi semua elemen baris matriks";
+            printf("\nKlik Enter");
+            std::getchar();
+            dealokasi(f, N);
+            return (NULL);
+        }
+    }
+
+    return f;
 }
 
 int main()
 {
-    alokasi(7, 5, 12);
+    f = alokasi(7, 12);
 }

@@ -1,43 +1,40 @@
-#ifndef bitmap_H
-#define bitmap_H
-#include <stdio.h>
-#include <io.h>
 #include <stdlib.h>
-#include <alloc.h>
+#include <iostream>
+#include <cstdio>
+
+typedef unsigned char **citra;
+typedef float **rmatrik;
+typedef int **imatriks;
+citra f;
+
+void *xalloc(unsigned ukuran)
+/* Mengalokasikan memori dan memeriksa apakah alokasi memori berhasil */
+{
+    void *p = malloc(ukuran);
+    if (p == NULL)
+    {
+
+        exit(0);
+    }
+    return p;
+}
+
+void **alokasi(int N, int M, int UkuranElemen)
+/* Mengalokasikan memori untuk matriks yang berukuran N x M. Setiap elemen
+matriks membutuhkan ruang memori sebesar UkuranElemen byte */
+{
+    int i;
+    std::cout << "Mengalokasikan memori untuk matriks";
+    printf("\nKlik Enter");
+    std::getchar();
+    void **larik = (void **)xalloc(N * sizeof(void *)); /* buat array N elemen */
+
+    for (i = 0; i < N; i++)
+        larik[i] = (void *)xalloc(M * UkuranElemen);
+    return larik;
+}
 
 int main()
 {
-    baca_citra_dari_arsip();
-}
-
-void baca_citra_dari_arsip(char nama_arsip[], citra f)
-/* Membaca citra dari arsip nama_arsip. Citra hasil pembacaan disimpan di
- dalam matriks f.
-*/
-{
-    FILE *fp;
-    int i, j;
-    unsigned short int N, M;
-
-    if ((fp = fopen(nama_arsip, “rb”)) == NULL)
-    {
-        printf(“Arsip tidak ada”);
-        exit(0);
-    }
-    fread(&N, sizeof(unsigned short int), 1, fp); /* baca tinggi citra */
-    fread(&M, sizeof(unsigned short int), 1, fp); /* baca lebar citra */
-
-    f = alokasi(N, M) /* alokasi memori matriks untuk citra f */
-        if (f == NULL)
-    {
-        printf(“Memori tidak cukup”);
-        exit(0);
-    }
-    /* baca data citra baris demi baris */
-    for (i = 0; i < N; i++)
-    {
-        /* baca data citra baris ke-i */
-        fread(f[i], sizeof(citraunsigned char), M, fp);
-    }
-    close(fp);
+    alokasi(7, 5, 12);
 }
