@@ -7,6 +7,11 @@ float **Mat;
 
 citra f;
 
+int main()
+{
+    alokasi(160, 160);
+}
+
 void dealokasi(citra f, int N)
 /* Dealokasi memori dari citra f yang mempunyai N baris pixel */
 {
@@ -61,9 +66,4 @@ matriks membutuhkan ruang memori sebesar UkuranElemen byte */
     for (i = 0; i < N; i++)
         larik[i] = (void *)xalloc(M * UkuranElemen);
     return larik;
-}
-
-int main()
-{
-    alokasi(160, 160);
 }

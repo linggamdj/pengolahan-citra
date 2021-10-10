@@ -1,3 +1,15 @@
+#ifndef bitmap_H
+#define bitmap_H
+#include <stdio.h>
+#include <io.h>
+#include <stdlib.h>
+#include <alloc.h>
+
+int main()
+{
+    tulis_citra_ke_arsip();
+}
+
 void tulis_citra_ke_arsip(char nama_arsip[], citra f)
 /* Menulis citra f ke dalam arsip nama_arsip. */
 {

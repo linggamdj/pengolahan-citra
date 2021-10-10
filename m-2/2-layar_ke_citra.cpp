@@ -8,6 +8,11 @@
 setpixel(unsigned char r, unsigned char g, unsigned char b,
          int i, int j);
 
+int main()
+{
+    tampilkan_citra();
+}
+
 void tampilkan_citra(citra r, citra g, citra b, int N, int M)
 /* Menampilkan citra yang berukuran N x M pixel ke layar. */
 {

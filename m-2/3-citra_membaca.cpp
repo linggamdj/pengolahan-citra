@@ -1,3 +1,15 @@
+#ifndef bitmap_H
+#define bitmap_H
+#include <stdio.h>
+#include <io.h>
+#include <stdlib.h>
+#include <alloc.h>
+
+int main()
+{
+    baca_citra_dari_arsip();
+}
+
 void baca_citra_dari_arsip(char nama_arsip[], citra f)
 /* Membaca citra dari arsip nama_arsip. Citra hasil pembacaan disimpan di
  dalam matriks f.
